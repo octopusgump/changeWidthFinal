@@ -727,7 +727,7 @@ var key_last;
 
 
 var flag = false;
-$(".pyramid").on("touchstart touchend", function(){
+$(".pyramid").on("touchstart touchmove ", function(){
   if (!flag) {
     flag = true;
     setTimeout(function(){ flag = false; }, 10);
