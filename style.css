@@ -1,0 +1,158 @@
+body{
+  background: white;
+}
+#game{
+  position: absolute;
+  top: 10px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+
+  width: 282px;
+  height: 350px;
+}
+
+.row0{
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+.row1{
+  position: absolute;
+  left: 65px;
+  top: 77px;
+}
+.row2{
+  position: absolute;
+  left: 29px;
+  top: 155px;
+}
+.row3{
+  position: absolute;
+  left: -6px;
+  top: 232px;
+}
+.pyramid{
+  content: '';
+  height: 50px;
+  width: 50px;
+  background: #dde345;
+  display: inline-block;
+  transform: rotate(45deg);
+  margin: 8.5px;
+  transition: all 600ms ease;   
+  cursor: pointer;
+}
+
+.pyramid:before{
+  content: '';
+  height: 50px;
+  width: 30px;
+  background: #314840;
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  transform: skew(0deg, 45deg);
+  transition: all 600ms ease;   
+}
+.pyramid:after{
+  content: '';
+  height: 30px;
+  width: 50px;
+  background: #56a993;
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  transform: skew(45deg, 0deg);
+  transition: all 600ms ease;   
+}
+
+@keyframes hop{
+  from {top:36px;}
+  to {top:20px;}
+}
+.pyramid.change{
+  margin-top: -20px;
+}
+.pyramid.change:after{
+  left: 35px;
+  top: 50px;
+  height: 70px;
+}
+.pyramid.change:before{
+  left: 50px;
+  top: 35px;
+  width: 70px;
+}
+
+@media (max-width: 1400px) {
+  .pyramid{
+    transform: rotate(0deg);
+  }
+}
+@media (max-width: 1300px) {
+  .pyramid{
+    transform: rotate(-45deg);    
+  }
+}
+@media (max-width: 1200px) {
+  .pyramid{
+    transform: rotate(-90deg);
+  }
+}
+@media (max-width: 1100px) {
+  .pyramid{
+    transform: rotate(-135deg);
+  }
+}
+@media (max-width: 1000px) {
+  .pyramid{
+    transform: rotate(-180deg);
+  }
+}
+@media (max-width: 900px) {
+  .pyramid{
+    transform: rotate(-225deg);
+  }
+}
+@media (max-width: 800px) {
+  .pyramid{
+    transform: rotate(-270deg);
+  }
+}
+@media (max-width: 700px) {
+  .pyramid{
+    transform: rotate(-315deg);
+  }
+}
+@media (max-width: 600px) {
+  .pyramid{
+    transform: rotate(-360deg);
+  }
+}
+@media (max-width: 500px) {
+  .pyramid{
+    transform: rotate(-405deg);
+  }
+}
+@media (max-width: 400px) {
+  .pyramid{
+    width: 0px;
+    height: 0px;
+  }
+  .pyramid:before{
+    width: 0px;
+    height: 0px;
+  }
+  .pyramid:after{
+    width: 0px;
+    height: 0px;
+  }
+  #qbert{
+    width: 5px;
+    height: 5px;
+  }
+}
+

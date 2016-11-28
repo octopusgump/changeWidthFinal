@@ -1,0 +1,127 @@
+body{
+  background: #182B3A;
+  transition: all 2000ms ease;  
+  overflow:hidden;
+}
+/*
+FF9F1C
+*/
+#game{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 950px;
+  left: 0;
+  margin: auto;
+  margin-left: 10px;
+  height: 50px;
+  width: 1440px;
+}
+#game1{
+  position: absolute;
+  top: 1050px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  transform: rotate(180deg);
+  transition: all 300ms ease;   
+
+  width: 50px;
+  height: 50px;
+}
+
+.pyramid{
+  content: '';
+  height: 50px;
+  width: 50px;
+  background: #dde345;
+  display: inline-block;
+  transform: rotate(45deg);
+  margin: 8.5px;
+  transition: all 2000ms ease;   
+  cursor: pointer;
+}
+
+.pyramid:before{
+  content: '';
+  height: 50px;
+  width: 30px;
+  background: #314840;
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  transform: skew(0deg, 45deg);
+  transition: all 300ms ease;   
+}
+.pyramid:after{
+  content: '';
+  height: 30px;
+  width: 50px;
+  background: #56a993;
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  transform: skew(45deg, 0deg);
+  transition: all 300ms ease;   
+}
+
+@keyframes hop{
+  from {top:36px;}
+  to {top:20px;}
+}
+.pyramid.change{
+  background-color: #fc6b19;
+   margin: -28.5px 44.5px 46.5px -28.5px;
+}
+.pyramid.change:after{
+  left: 35px;
+  top: 50px;
+  height: 70px;
+}
+.pyramid.change:before{
+  left: 50px;
+  top: 35px;
+  width: 70px;
+}
+
+@media (max-width: 1200px) {
+  .pyramid{
+  transform: rotate(0deg);
+  }
+}
+@media (max-width: 900px) {
+  .pyramid{
+  transform: rotate(-35deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .pyramid{
+  transform: rotate(-335deg);
+  }
+}
+
+@media (max-height: 750px) {
+  .pyramid:before{
+  background: #003459;
+  }
+  .pyramid:before{
+  background: #00A8E8;
+  }
+
+}
+@media (max-height: 670px) {
+  .pyramid{
+  background: #011627;
+  }
+}
+
+@media (max-height: 600px) {
+body{
+  background: #FDFFFC;
+  transition: all 2000ms ease;  
+}
+}
+
+

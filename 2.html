@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>@>@</title>
+	<link rel="stylesheet" href="style2.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/sketch.js"></script>
+</head>
+<body>
+<div class="helper"></div>
+	<div id="game">
+		<div id="pyramid"></div>
+	</div>
+	<div id="game1">
+		<div id="pyramid"></div>
+	</div>
+
+	<!-- <div id="qbert"></div> -->
+	<!-- <button id="lol"></button> -->
+	<!-- <canvas id="sketch" width="1440px" height="800px"></canvas> -->
+
+	<script type="text/javascript">
+		var click = false;
+		$(document).on('mousemove', function(e){
+			var x = e.pageX;
+			var y = e.pageY;
+			console.log(x);
+			console.log(y);
+			// $('#qbert').css({'left': x-10}); 
+			// $('#qbert').css({'margin-top': y-50}); 
+			$('#lol').css({'top': y-20, 'left': x-30}); 
+			$('#sketch').sketch({defaultColor: "#ff0"});
+
+			
+		});
+
+		function boxShadowGeneration(){
+			var block = 2;
+			for (var i = 1; i <= 3; i++) {//i row
+				$('#pyramid').css({'box-shadow': 
+					30px 80px 0 #dde345,
+					80px 30px 0 #dde345,
+				});
+				
+			};	
+		}
+
+		setInterval(movePlane, 20);
+		var keys = {}
+
+		$(document).keydown(function(e) {
+			keys[e.keyCode] = true;
+		});
+
+		$(document).keyup(function(e) {
+			delete keys[e.keyCode];
+		});
+
+
+		function movePlane() {
+			for (var direction in keys) {
+				if (!keys.hasOwnProperty(direction)) continue;
+				if (direction == 37) {
+					$("#qbert").animate({left: "-=5"}, 0);
+				}
+				if (direction == 38) {
+					$("#qbert").animate({'margin-top': "-=5"}, 0);  
+				}
+				if (direction == 39) {
+					$("#qbert").animate({left: "+=5"}, 0);  
+				}
+				if (direction == 40) {
+					$("#qbert").animate({'margin-top': "+=5"}, 0);  
+				}
+			}
+		}
+	</script>
+
+</body>
+</html>

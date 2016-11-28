@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>@>@</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div id="game">     
+    <div class="row0">
+      <div class="p0 pyramid"></div>
+    </div>
+    <div class="row1">
+      <div class="p1 pyramid"></div>
+      <div class="p2 pyramid"></div>
+    </div>
+    <div class="row2">
+      <div class="p3 pyramid"></div>
+      <div class="p4 pyramid"></div>
+      <div class="p5 pyramid"></div>
+    </div>
+    <div class="row3">
+      <div class="p6 pyramid"></div>
+      <div class="p7 pyramid"></div>
+      <div class="p8 pyramid"></div>
+      <div class="p9 pyramid"></div>
+    </div>
+  </div>
+
+
+
+
+  <script type="text/javascript">
+
+    $('.pyramid').click(function(){
+      // $(this).css({'margin-top': '-20px'});
+      //console.log(this);
+      $(this).toggleClass('change');
+      var audio = new Audio('sound/tone.mp3');
+        audio.play();
+    });
+
+    var click = false;
+    $(document).on('mousemove', function(e){
+      var x = e.pageX;
+      var y = e.pageY;
+      // console.log(x);
+      // console.log(y);
+      
+    });
+
+    setInterval(movePlane, 20);
+    var keys = {}
+
+    $(document).keydown(function(e) {
+      keys[e.keyCode] = true;
+    });
+
+    $(document).keyup(function(e) {
+      delete keys[e.keyCode];
+    });
+
+
+    function movePlane() {
+      for (var direction in keys) {
+        if (!keys.hasOwnProperty(direction)) continue;
+        if (direction == 37) {
+          $("#qbert").animate({left: "-=5"}, 0);
+        }
+        if (direction == 38) {
+          $("#qbert").animate({'margin-top': "-=5"}, 0);  
+        }
+        if (direction == 39) {
+          $("#qbert").animate({left: "+=5"}, 0);  
+        }
+        if (direction == 40) {
+          $("#qbert").animate({'margin-top': "+=5"}, 0);  
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
