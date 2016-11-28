@@ -730,7 +730,7 @@ var flag = false;
 $(".pyramid").on("mouseover touchstart", function(){
   if (!flag) {
     flag = true;
-    setTimeout(function(){ flag = false; }, 100);
+    setTimeout(function(){ flag = false; }, 10);
       $(this).toggleClass('change');
     var key_now = parseInt($(this).attr('id').substr(1)); 
     getKey(key_last, key_now);
