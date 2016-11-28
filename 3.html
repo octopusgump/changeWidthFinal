@@ -726,12 +726,32 @@ function GetKeyList(key_last, key_now)
 var key_last;
 
 
-var flag = false;
-$(".pyramid").on("touchstart touchmove ", function(){
-  if (!flag) {
-    flag = true;
-    setTimeout(function(){ flag = false; }, 10);
-      $(this).toggleClass('change');
+// var flag = false;
+// $(".pyramid").on("touchmove", function(){
+//   if (!flag) {
+//     flag = true;
+//     setTimeout(function(){ flag = false; }, 10);
+//       $(this).toggleClass('change');
+//     var key_now = parseInt($(this).attr('id').substr(1)); 
+//     getKey(key_last, key_now);
+//     key_last = key_now;
+//     ++keyID;                        //the modular reset the value back to zero
+//     keyID = keyID % keys[0].length;//make sure not out of bound
+
+//     //everytime it passes 1000ms, it restart the key
+//     if(TimeOutID != null){ 
+//         clearTimeout(TimeOutID);
+
+//     }
+//     //reset the starting or end time
+//     TimeOutID = setTimeout(TimeOutFunc, 1000);
+//   }
+
+//   return false
+// });
+$(".pyramid").on("touchmove", function()
+{   
+    $(this).toggleClass('change');
     var key_now = parseInt($(this).attr('id').substr(1)); 
     getKey(key_last, key_now);
     key_last = key_now;
@@ -745,10 +765,7 @@ $(".pyramid").on("touchstart touchmove ", function(){
     }
     //reset the starting or end time
     TimeOutID = setTimeout(TimeOutFunc, 1000);
-  }
-
-  return false
-});
+})
 
 
 </script>
