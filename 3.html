@@ -725,7 +725,7 @@ function GetKeyList(key_last, key_now)
 
 var key_last;
 
-$(".pyramid").on("mouseover", function()
+$(".pyramid").on("mouseover touchstart", function()
 {   
     $(this).toggleClass('change');
     var key_now = parseInt($(this).attr('id').substr(1)); 
