@@ -4,83 +4,519 @@
   <title>@>@</title>
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 
-  <div id="game">     
-    <div class="row0">
-      <div class="p0 pyramid"></div>
-    </div>
-    <div class="row1">
-      <div class="p1 pyramid"></div>
-      <div class="p2 pyramid"></div>
-    </div>
-    <div class="row2">
-      <div class="p3 pyramid"></div>
-      <div class="p4 pyramid"></div>
-      <div class="p5 pyramid"></div>
-    </div>
-    <div class="row3">
-      <div class="p6 pyramid"></div>
-      <div class="p7 pyramid"></div>
-      <div class="p8 pyramid"></div>
-      <div class="p9 pyramid"></div>
-    </div>
+  <div id="game">
   </div>
-
-
-
-
-  <script type="text/javascript">
-
-    $('.pyramid').click(function(){
-      // $(this).css({'margin-top': '-20px'});
-      //console.log(this);
-      $(this).toggleClass('change');
-      var audio = new Audio('sound/tone.mp3');
-        audio.play();
-    });
-
-    var click = false;
-    $(document).on('mousemove', function(e){
-      var x = e.pageX;
-      var y = e.pageY;
-      // console.log(x);
-      // console.log(y);
-      
-    });
-
-    setInterval(movePlane, 20);
-    var keys = {}
-
-    $(document).keydown(function(e) {
-      keys[e.keyCode] = true;
-    });
-
-    $(document).keyup(function(e) {
-      delete keys[e.keyCode];
-    });
-
-
-    function movePlane() {
-      for (var direction in keys) {
-        if (!keys.hasOwnProperty(direction)) continue;
-        if (direction == 37) {
-          $("#qbert").animate({left: "-=5"}, 0);
-        }
-        if (direction == 38) {
-          $("#qbert").animate({'margin-top': "-=5"}, 0);  
-        }
-        if (direction == 39) {
-          $("#qbert").animate({left: "+=5"}, 0);  
-        }
-        if (direction == 40) {
-          $("#qbert").animate({'margin-top': "+=5"}, 0);  
-        }
-      }
-    }
-  </script>
-
 </body>
+  <script type="text/javascript">
+var num_things = 290;
+
+//generate divs with id and class
+for(var i = 0; i < num_things; ++i)
+{
+      $("#game").append("<div id='p"+ i + "' class='pyramid'></div>")
+}
+
+var keyID = 0;
+
+function TimeOutFunc(){
+    keyID = 0;  
+};
+
+
+var TimeOutID;
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+
+var keys = [
+[ new Audio('sound/C2A.mp3'), 
+new Audio('sound/C2A.mp3'), 
+new Audio('sound/C2S.mp3'), 
+new Audio('sound/C2D.mp3'), 
+new Audio('sound/C2F.mp3'),
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2H.mp3'),
+new Audio('sound/C2J.mp3'),
+new Audio('sound/C2K.mp3'), 
+new Audio('sound/C2L.mp3'),
+new Audio('sound/C2O.mp3'),
+new Audio('sound/C2P.mp3'),
+new Audio('sound/C3A.mp3'), 
+new Audio('sound/C3S.mp3'), 
+new Audio('sound/C3D.mp3'),
+new Audio('sound/C3F.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3H.mp3'),
+new Audio('sound/C3J.mp3'), 
+new Audio('sound/C3K.mp3'),
+new Audio('sound/C3L.mp3'),
+new Audio('sound/C3O.mp3'),
+new Audio('sound/C3P.mp3')],
+
+[ 
+new Audio('sound/C2P.mp3'), 
+new Audio('sound/C2P.mp3'), 
+new Audio('sound/C2O.mp3'), 
+new Audio('sound/C2L.mp3'),
+new Audio('sound/C2K.mp3'),
+new Audio('sound/C2J.mp3'),
+new Audio('sound/C2H.mp3'),
+new Audio('sound/C2G.mp3'), 
+new Audio('sound/C2F.mp3'),
+new Audio('sound/C2D.mp3'),
+new Audio('sound/C2S.mp3'),
+new Audio('sound/C2A.mp3'), 
+new Audio('sound/C3A.mp3'), 
+new Audio('sound/C3L.mp3'), 
+new Audio('sound/C3K.mp3'),
+new Audio('sound/C3J.mp3'),
+new Audio('sound/C3H.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3F.mp3'), 
+new Audio('sound/C3D.mp3'),
+new Audio('sound/C3S.mp3'),
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3')],
+
+[   
+new Audio('sound/C2A.mp3'), 
+new Audio('sound/C2A.mp3'), 
+new Audio('sound/C2A.mp3'), 
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C2A.mp3'), 
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C2A.mp3'),
+new Audio('sound/C3A.mp3'), 
+new Audio('sound/C3A.mp3'), 
+new Audio('sound/C3A.mp3'), 
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3'), 
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3'),
+new Audio('sound/C3A.mp3')],
+
+[ 
+new Audio('sound/C2G.mp3'), 
+new Audio('sound/C2G.mp3'), 
+new Audio('sound/C2G.mp3'), 
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2G.mp3'), 
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C2G.mp3'),
+new Audio('sound/C3G.mp3'), 
+new Audio('sound/C3G.mp3'), 
+new Audio('sound/C3G.mp3'), 
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3'), 
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3'),
+new Audio('sound/C3G.mp3')]
+];
+
+var keys800 = [
+[
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'), 
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3'),
+new Audio('sound/AcousticGuitar/D1.mp3') ],
+
+[
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'), 
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3'),
+new Audio('sound/AcousticGuitar/F1.mp3') ],
+
+[   
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'), 
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3'),
+new Audio('sound/AcousticGuitar/S1.mp3')],
+
+[ 
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'), 
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3'),
+new Audio('sound/AcousticGuitar/A1.mp3')]
+];
+
+var keys600 = [ 
+[new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/J.mp3'), 
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/L.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/L.mp3'), 
+new Audio('sound/SS/L.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/L.mp3'),
+new Audio('sound/SS/L.mp3'),
+new Audio('sound/SS/L.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/K.mp3')],
+
+[ new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/S.mp3'), 
+new Audio('sound/SS/S.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/S.mp3'),
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/A.mp3'), 
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/S.mp3'),
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/S.mp3')],
+
+[   new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/J.mp3'),
+new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/H.mp3'), 
+new Audio('sound/SS/H.mp3'), 
+new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/J.mp3'),
+new Audio('sound/SS/J.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/J.mp3'),
+new Audio('sound/SS/G.mp3')],
+
+[ 
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3'), 
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/F.mp3')]
+];
+
+var keys400 = [
+[ 
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/K.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/K.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/K.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'), 
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/J.mp3'),
+new Audio('sound/AfterParty/K.mp3'),
+new Audio('sound/AfterParty/K.mp3')],
+
+[ 
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/H.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/S.mp3'),
+new Audio('sound/AfterParty/S.mp3'),
+new Audio('sound/AfterParty/H.mp3'), 
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/H.mp3'), 
+new Audio('sound/AfterParty/H.mp3'), 
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/H.mp3'),
+new Audio('sound/AfterParty/H.mp3'), 
+new Audio('sound/AfterParty/S.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3')],
+
+[   
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/F.mp3'),
+new Audio('sound/AfterParty/F.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/F.mp3'),
+new Audio('sound/AfterParty/F.mp3'), 
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/F.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'), 
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3')],
+
+[ 
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/;.mp3'),
+new Audio('sound/AfterParty/;.mp3'),
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/;.mp3'), 
+new Audio('sound/AfterParty/;.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'), 
+new Audio('sound/AfterParty/;.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3'),
+new Audio('sound/AfterParty/L.mp3')]
+];
+
+
+function getKey(key_last, key_now) 
+{
+    var audio;
+    
+    if(window.innerWidth >= 1200){
+        audio = new Audio(keys[GetKeyList(key_last, key_now)][keyID].src);
+    }else if(window.innerWidth >= 900){
+        audio = new Audio(keys800[GetKeyList(key_last, key_now)][keyID].src);
+    }else if(window.innerWidth >= 700){
+        audio = new Audio(keys600[GetKeyList(key_last, key_now)][keyID].src);
+    }else if(window.innerWidth >= 400){
+        audio = new Audio(keys400[GetKeyList(key_last, key_now)][keyID].src);
+    }
+    console.log(keyID);
+
+    //audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+    
+};
+
+const UP_KEY = 0;
+const DOWN_KEY = 1;
+const LEFT_KEY = 2;
+const RIGHT_KEY = 3;
+
+function GetKeyList(key_last, key_now)
+{   //22 number here is the 
+    //console.log(key_last);
+    if(key_last == null)
+        return UP_KEY;
+    var Y0 = parseInt(key_last / 22);
+    var Y1 = parseInt(key_now / 22);
+    //console.log("Y val " + Y0 + " Y1 val " + Y1)
+    var dY = Y1 - Y0;
+    var dX =  (key_now - (Y1 * 22)) - (key_last - (Y0 * 22));
+
+    if(Math.abs(dX) >= Math.abs(dY))
+    {
+        if(dX < 0)
+        {   
+            console.log('LEFT_KEY');
+            return LEFT_KEY;
+        }else{
+            console.log('RIGHT_KEY');
+            return RIGHT_KEY;
+        }
+    } else{
+        if(dY > 0)
+        {
+            console.log('DOWN_KEY');
+            return DOWN_KEY;
+        }
+        else{
+            console.log('UP_KEY');
+            return UP_KEY;
+        }
+    }
+}
+
+var key_last;
+
+$(".pyramid").on("mouseover touchstart", function()
+{   
+    $(this).toggleClass('change');
+    var key_now = parseInt($(this).attr('id').substr(1)); 
+    getKey(key_last, key_now);
+    key_last = key_now;
+    ++keyID;                        //the modular reset the value back to zero
+    keyID = keyID % keys[0].length;//make sure not out of bound
+
+    //everytime it passes 1000ms, it restart the key
+    if(TimeOutID != null){ 
+        clearTimeout(TimeOutID);
+
+    }
+    //reset the starting or end time
+    TimeOutID = setTimeout(TimeOutFunc, 1000);
+})
+
+</script>
+
+
 </html>
