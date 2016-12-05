@@ -13,24 +13,23 @@
 </body>
   <script type="text/javascript">
 
-function row(){
-    var rowPyramid = window.innerWidth/67;
-    return rowPyramid;
-}
+// function row(){
+//     var rowPyramid = window.innerWidth/67;
+//     return rowPyramid;
+// }
 
-function col(){
-    var colPyramid = window.innerHeight/67;
-    return colPyramid;
-}
+// function col(){
+//     var colPyramid = window.innerHeight/67;
+//     return colPyramid;
+// }
 
-$( window ).resize(function() {
+// $( window ).resize(function() {
   
-});
-
+// });
 
 //var num_things = row() * col();
 
-var num_things = 290;
+var num_things = 286;
 
 //generate divs with id and class
 for(var i = 0; i < num_things; ++i)
@@ -503,20 +502,20 @@ function GetKeyList(key_last, key_now)
     {
         if(dX < 0)
         {   
-            //console.log('LEFT_KEY');
+            console.log('LEFT_KEY');
             return LEFT_KEY;
         }else{
-            //console.log('RIGHT_KEY');
+            console.log('RIGHT_KEY');
             return RIGHT_KEY;
         }
     } else{
         if(dY > 0)
         {
-            //console.log('DOWN_KEY');
+            console.log('DOWN_KEY');
             return DOWN_KEY;
         }
         else{
-            //console.log('UP_KEY');
+            console.log('UP_KEY');
             return UP_KEY;
         }
     }
