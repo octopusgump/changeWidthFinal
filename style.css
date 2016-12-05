@@ -16,7 +16,7 @@ FF9F1C
     /* margin-left: 10px; */
     height: 50px;
     width: 1474px;
-    1500/(50+8.5x2)
+    /*1500/(50+8.5x2)*/
 }
 
 .pyramid{
@@ -25,7 +25,7 @@ FF9F1C
   width: 50px;
   background: #dde345;
   display: inline-block;
-  transform: rotate(0deg);
+  transform: rotate(45deg);
   margin: 8.5px;
   transition: all 2000ms ease;   
   cursor: pointer;
@@ -59,6 +59,7 @@ FF9F1C
   to {top:20px;}
 }
 .pyramid.change{
+  cursor: pointer;
   background-color: #fc6b19;
    margin: -28.5px 44.5px 46.5px -28.5px;
 }
@@ -75,7 +76,6 @@ FF9F1C
 
 @media (max-width: 1200px) {
   .pyramid{
-  transform: rotate(-35deg);
   transition: all 1000ms ease;  
   background: #A3D4A0;
   }
@@ -93,7 +93,6 @@ FF9F1C
 @media (max-width: 900px) {
   .pyramid{
   background:#1D3557; 
-  transform: rotate(45deg);
   transition: all 2600ms ease;  
   }
   .pyramid:before{
@@ -110,7 +109,6 @@ FF9F1C
 
 @media (max-width: 700px) {
   .pyramid{
-  transform: rotate(-335deg);
   background: #E71D36;
   transition: all 300ms ease;   
   }
@@ -127,27 +125,49 @@ FF9F1C
 
 
 
-
+/*
 @media (max-height: 750px) {
-  .pyramid:before{
-  background: #003459;
-  }
-  .pyramid:after{
-  background: #00A8E8;
-  }
-
-}
-@media (max-height: 670px) {
   .pyramid{
-  background: #011627;
+  transform: rotate(35deg);
   }
 }
-
+@media (max-height: 700px) {
+  .pyramid{
+  transform: rotate(25deg);
+  }
+}
+@media (max-height: 650px) {
+  .pyramid{
+  transform: rotate(15deg);
+  }
+}
 @media (max-height: 600px) {
-body{
-  background: #FDFFFC;
-  transition: all 2000ms ease;  
+  .pyramid{
+  transform: rotate(5deg);
+  }
 }
+@media (max-height: 550px) {
+  .pyramid{
+  transform: rotate(-5deg);
+  }
 }
-
-
+@media (max-height: 500px) {
+  .pyramid{
+  transform: rotate(-15deg);
+  }
+}
+@media (max-height: 450px) {
+  .pyramid{
+  transform: rotate(-25deg);
+  }
+}
+@media (max-height: 400px) {
+  .pyramid{
+  transform: rotate(-35deg);
+  }
+}
+@media (max-height: 350px) {
+  .pyramid{
+  transform: rotate(-45deg);
+  }
+}*/

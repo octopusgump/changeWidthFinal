@@ -6,19 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
-<body>
+<body onresize="rotatePyramid()" onresize ="row()">
 
   <div id="game">
   </div>
 </body>
   <script type="text/javascript">
+
+function row(){
+    var rowPyramid = window.innerWidth/67;
+    return rowPyramid;
+}
+
+function col(){
+    var colPyramid = window.innerHeight/67;
+    return colPyramid;
+}
+
+$( window ).resize(function() {
+  
+});
+
+
+//var num_things = row() * col();
+
 var num_things = 290;
 
 //generate divs with id and class
 for(var i = 0; i < num_things; ++i)
 {
-      $("#game").append("<div id='p"+ i + "' class='pyramid'></div>")
+    $("#game").append("<div id='p"+ i + "' class='pyramid'></div>")
 }
+
+function rotatePyramid (){
+var rotateDegree = parseInt((window.innerHeight/5) - 115);
+//console.log(rotateDegree);
+ $(".pyramid").css("transform", "rotate("+ rotateDegree + "deg)");
+}
+
 
 var keyID = 0;
 
@@ -27,211 +52,211 @@ function TimeOutFunc(){
 };
 
 
+
 var TimeOutID;
-var windowWidth = window.innerWidth;
-var windowHeight = window.innerHeight;
 
 var keys = [
-[ new Audio('sound/C2A.mp3'), 
-new Audio('sound/C2A.mp3'), 
-new Audio('sound/C2S.mp3'), 
-new Audio('sound/C2D.mp3'), 
-new Audio('sound/C2F.mp3'),
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2H.mp3'),
-new Audio('sound/C2J.mp3'),
-new Audio('sound/C2K.mp3'), 
-new Audio('sound/C2L.mp3'),
-new Audio('sound/C2O.mp3'),
-new Audio('sound/C2P.mp3'),
-new Audio('sound/C3A.mp3'), 
-new Audio('sound/C3S.mp3'), 
-new Audio('sound/C3D.mp3'),
-new Audio('sound/C3F.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3H.mp3'),
-new Audio('sound/C3J.mp3'), 
-new Audio('sound/C3K.mp3'),
-new Audio('sound/C3L.mp3'),
-new Audio('sound/C3O.mp3'),
-new Audio('sound/C3P.mp3')],
+[ 
+new Audio('sound/Harp/A3.mp3'), 
+new Audio('sound/Harp/A3.mp3'), 
+new Audio('sound/Harp/A3.mp3'), 
+new Audio('sound/Harp/A3.mp3'), 
+new Audio('sound/Harp/A3.mp3'),
+new Audio('sound/Harp/A3.mp3'),
+new Audio('sound/Harp/A3.mp3'),
+new Audio('sound/Harp/A3.mp3'),
+new Audio('sound/Harp/S3.mp3'), 
+new Audio('sound/Harp/S3.mp3'),
+new Audio('sound/Harp/S3.mp3'),
+new Audio('sound/Harp/S3.mp3'),
+new Audio('sound/Harp/S3.mp3'), 
+new Audio('sound/Harp/S3.mp3'), 
+new Audio('sound/Harp/S3.mp3'),
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/D3.mp3'), 
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/D3.mp3')],
 
 [ 
-new Audio('sound/C2P.mp3'), 
-new Audio('sound/C2P.mp3'), 
-new Audio('sound/C2O.mp3'), 
-new Audio('sound/C2L.mp3'),
-new Audio('sound/C2K.mp3'),
-new Audio('sound/C2J.mp3'),
-new Audio('sound/C2H.mp3'),
-new Audio('sound/C2G.mp3'), 
-new Audio('sound/C2F.mp3'),
-new Audio('sound/C2D.mp3'),
-new Audio('sound/C2S.mp3'),
-new Audio('sound/C2A.mp3'), 
-new Audio('sound/C3A.mp3'), 
-new Audio('sound/C3L.mp3'), 
-new Audio('sound/C3K.mp3'),
-new Audio('sound/C3J.mp3'),
-new Audio('sound/C3H.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3F.mp3'), 
-new Audio('sound/C3D.mp3'),
-new Audio('sound/C3S.mp3'),
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3')],
+new Audio('sound/Harp/D2.mp3'), 
+new Audio('sound/Harp/D2.mp3'), 
+new Audio('sound/Harp/D2.mp3'), 
+new Audio('sound/Harp/D2.mp3'),
+new Audio('sound/Harp/D2.mp3'),
+new Audio('sound/Harp/D2.mp3'),
+new Audio('sound/Harp/D2.mp3'),
+new Audio('sound/Harp/D2.mp3'), 
+new Audio('sound/Harp/S2.mp3'),
+new Audio('sound/Harp/S2.mp3'),
+new Audio('sound/Harp/S2.mp3'),
+new Audio('sound/Harp/S2.mp3'), 
+new Audio('sound/Harp/S2.mp3'), 
+new Audio('sound/Harp/S2.mp3'), 
+new Audio('sound/Harp/S2.mp3'),
+new Audio('sound/Harp/S2.mp3'),
+new Audio('sound/Harp/A2.mp3'),
+new Audio('sound/Harp/A2.mp3'),
+new Audio('sound/Harp/A2.mp3'), 
+new Audio('sound/Harp/A2.mp3'),
+new Audio('sound/Harp/A2.mp3'),
+new Audio('sound/Harp/A2.mp3'),
+new Audio('sound/Harp/A2.mp3')],
 
 [   
-new Audio('sound/C2A.mp3'), 
-new Audio('sound/C2A.mp3'), 
-new Audio('sound/C2A.mp3'), 
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C2A.mp3'), 
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C2A.mp3'),
-new Audio('sound/C3A.mp3'), 
-new Audio('sound/C3A.mp3'), 
-new Audio('sound/C3A.mp3'), 
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3'), 
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3'),
-new Audio('sound/C3A.mp3')],
+new Audio('sound/Harp/P2.mp3'), 
+new Audio('sound/Harp/O2.mp3'), 
+new Audio('sound/Harp/L2.mp3'), 
+new Audio('sound/Harp/K2.mp3'),
+new Audio('sound/Harp/J2.mp3'),
+new Audio('sound/Harp/H2.mp3'),
+new Audio('sound/Harp/G2.mp3'),
+new Audio('sound/Harp/F2.mp3'), 
+new Audio('sound/Harp/D2.mp3'),
+new Audio('sound/Harp/S2.mp3'),
+new Audio('sound/Harp/A2.mp3'),
+new Audio('sound/Harp/P3.mp3'), 
+new Audio('sound/Harp/O3.mp3'), 
+new Audio('sound/Harp/L3.mp3'), 
+new Audio('sound/Harp/K3.mp3'),
+new Audio('sound/Harp/J3.mp3'),
+new Audio('sound/Harp/H3.mp3'),
+new Audio('sound/Harp/G3.mp3'),
+new Audio('sound/Harp/F3.mp3'), 
+new Audio('sound/Harp/D3.mp3'),
+new Audio('sound/Harp/S3.mp3'),
+new Audio('sound/Harp/A3.mp3'),
+new Audio('sound/Harp/A3.mp3')],
 
 [ 
-new Audio('sound/C2G.mp3'), 
-new Audio('sound/C2G.mp3'), 
-new Audio('sound/C2G.mp3'), 
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2G.mp3'), 
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C2G.mp3'),
-new Audio('sound/C3G.mp3'), 
-new Audio('sound/C3G.mp3'), 
-new Audio('sound/C3G.mp3'), 
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3'), 
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3'),
-new Audio('sound/C3G.mp3')]
+new Audio('sound/Harp/A2.mp3'), 
+new Audio('sound/Harp/S2.mp3'), 
+new Audio('sound/Harp/D2.mp3'), 
+new Audio('sound/Harp/F2.mp3'),
+new Audio('sound/Harp/G2.mp3'),
+new Audio('sound/Harp/H2.mp3'),
+new Audio('sound/Harp/J2.mp3'),
+new Audio('sound/Harp/K2.mp3'), 
+new Audio('sound/Harp/L2.mp3'),
+new Audio('sound/Harp/O2.mp3'),
+new Audio('sound/Harp/P2.mp3'),
+new Audio('sound/Harp/A3.mp3'), 
+new Audio('sound/Harp/S3.mp3'), 
+new Audio('sound/Harp/D3.mp3'), 
+new Audio('sound/Harp/F3.mp3'),
+new Audio('sound/Harp/G3.mp3'),
+new Audio('sound/Harp/H3.mp3'),
+new Audio('sound/Harp/J3.mp3'),
+new Audio('sound/Harp/K3.mp3'), 
+new Audio('sound/Harp/L3.mp3'),
+new Audio('sound/Harp/O3.mp3'),
+new Audio('sound/Harp/P3.mp3'),
+new Audio('sound/Harp/P3.mp3')]
 ];
 
 var keys800 = [
 [
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'), 
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3'),
-new Audio('sound/AcousticGuitar/D1.mp3') ],
+new Audio('sound/ClarinetSolo/A4.mp3'), 
+new Audio('sound/ClarinetSolo/A4.mp3'), 
+new Audio('sound/ClarinetSolo/A4.mp3'), 
+new Audio('sound/ClarinetSolo/A4.mp3'),
+new Audio('sound/ClarinetSolo/A4.mp3'),
+new Audio('sound/ClarinetSolo/A4.mp3'),
+new Audio('sound/ClarinetSolo/A4.mp3'),
+new Audio('sound/ClarinetSolo/A4.mp3'), 
+new Audio('sound/ClarinetSolo/S4.mp3'),
+new Audio('sound/ClarinetSolo/S4.mp3'),
+new Audio('sound/ClarinetSolo/S4.mp3'),
+new Audio('sound/ClarinetSolo/S4.mp3'), 
+new Audio('sound/ClarinetSolo/S4.mp3'), 
+new Audio('sound/ClarinetSolo/S4.mp3'), 
+new Audio('sound/ClarinetSolo/S4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3'), 
+new Audio('sound/ClarinetSolo/D4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3'),
+new Audio('sound/ClarinetSolo/D4.mp3') ],
 
 [
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'), 
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3'),
-new Audio('sound/AcousticGuitar/F1.mp3') ],
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/D3.mp3'),
+new Audio('sound/ClarinetSolo/D3.mp3'),
+new Audio('sound/ClarinetSolo/D3.mp3'),
+new Audio('sound/ClarinetSolo/D3.mp3'),
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'), 
+new Audio('sound/ClarinetSolo/S3.mp3'), 
+new Audio('sound/ClarinetSolo/S3.mp3'), 
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'), 
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3') ],
 
 [   
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'), 
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3'),
-new Audio('sound/AcousticGuitar/S1.mp3')],
+new Audio('sound/ClarinetSolo/G2.mp3'), 
+new Audio('sound/ClarinetSolo/F2.mp3'), 
+new Audio('sound/ClarinetSolo/D2.mp3'), 
+new Audio('sound/ClarinetSolo/S2.mp3'),
+new Audio('sound/ClarinetSolo/A2.mp3'),
+new Audio('sound/ClarinetSolo/G2.mp3'),
+new Audio('sound/ClarinetSolo/F2.mp3'),
+new Audio('sound/ClarinetSolo/D2.mp3'), 
+new Audio('sound/ClarinetSolo/S2.mp3'),
+new Audio('sound/ClarinetSolo/A2.mp3'),
+new Audio('sound/ClarinetSolo/G2.mp3'),
+new Audio('sound/ClarinetSolo/F2.mp3'), 
+new Audio('sound/ClarinetSolo/D2.mp3'), 
+new Audio('sound/ClarinetSolo/S2.mp3'), 
+new Audio('sound/ClarinetSolo/A2.mp3'),
+new Audio('sound/ClarinetSolo/G2.mp3'),
+new Audio('sound/ClarinetSolo/F2.mp3'),
+new Audio('sound/ClarinetSolo/D2.mp3'),
+new Audio('sound/ClarinetSolo/S2.mp3'), 
+new Audio('sound/ClarinetSolo/A2.mp3'),
+new Audio('sound/ClarinetSolo/A2.mp3'),
+new Audio('sound/ClarinetSolo/A2.mp3'),
+new Audio('sound/ClarinetSolo/A2.mp3')],
 
 [ 
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'), 
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3'),
-new Audio('sound/AcousticGuitar/A1.mp3')]
+new Audio('sound/ClarinetSolo/A3.mp3'), 
+new Audio('sound/ClarinetSolo/S3.mp3'), 
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/F3.mp3'),
+new Audio('sound/ClarinetSolo/G3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/F3.mp3'),
+new Audio('sound/ClarinetSolo/G3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'), 
+new Audio('sound/ClarinetSolo/D3.mp3'), 
+new Audio('sound/ClarinetSolo/F3.mp3'), 
+new Audio('sound/ClarinetSolo/G3.mp3'),
+new Audio('sound/ClarinetSolo/A3.mp3'),
+new Audio('sound/ClarinetSolo/S3.mp3'),
+new Audio('sound/ClarinetSolo/D3.mp3'),
+new Audio('sound/ClarinetSolo/F3.mp3'), 
+new Audio('sound/ClarinetSolo/G3.mp3'),
+new Audio('sound/ClarinetSolo/G3.mp3'),
+new Audio('sound/ClarinetSolo/G3.mp3'),
+new Audio('sound/ClarinetSolo/G3.mp3')]
 ];
 
 var keys600 = [ 
@@ -283,54 +308,55 @@ new Audio('sound/SS/S.mp3'),
 new Audio('sound/SS/D.mp3'),
 new Audio('sound/SS/S.mp3')],
 
-[   new Audio('sound/SS/G.mp3'), 
-new Audio('sound/SS/G.mp3'), 
-new Audio('sound/SS/G.mp3'), 
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/G.mp3'),
+[  
+new Audio('sound/SS/O.mp3'), 
+new Audio('sound/SS/L.mp3'), 
+new Audio('sound/SS/K.mp3'), 
 new Audio('sound/SS/J.mp3'),
-new Audio('sound/SS/G.mp3'), 
+new Audio('sound/SS/H.mp3'),
 new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/D.mp3'), 
+new Audio('sound/SS/S.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/O.mp3'),
+new Audio('sound/SS/L.mp3'), 
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/J.mp3'), 
+new Audio('sound/SS/H.mp3'),
 new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/H.mp3'), 
-new Audio('sound/SS/H.mp3'), 
-new Audio('sound/SS/G.mp3'), 
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/J.mp3'),
-new Audio('sound/SS/J.mp3'),
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/G.mp3'), 
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/J.mp3'),
-new Audio('sound/SS/G.mp3')],
+new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/D.mp3'),
+new Audio('sound/SS/S.mp3'), 
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/A.mp3')],
 
 [ 
-new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/F.mp3'),
+new Audio('sound/SS/A.mp3'), 
+new Audio('sound/SS/S.mp3'), 
+new Audio('sound/SS/D.mp3'), 
 new Audio('sound/SS/F.mp3'),
 new Audio('sound/SS/G.mp3'),
+new Audio('sound/SS/H.mp3'),
+new Audio('sound/SS/J.mp3'),
+new Audio('sound/SS/K.mp3'), 
+new Audio('sound/SS/L.mp3'),
+new Audio('sound/SS/O.mp3'),
+new Audio('sound/SS/A.mp3'),
+new Audio('sound/SS/S.mp3'), 
+new Audio('sound/SS/D.mp3'), 
 new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/G.mp3'), 
-new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/F.mp3'),
 new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/F.mp3'), 
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/G.mp3'),
-new Audio('sound/SS/F.mp3'),
-new Audio('sound/SS/F.mp3')]
+new Audio('sound/SS/H.mp3'),
+new Audio('sound/SS/J.mp3'),
+new Audio('sound/SS/K.mp3'),
+new Audio('sound/SS/L.mp3'), 
+new Audio('sound/SS/O.mp3'),
+new Audio('sound/SS/O.mp3'),
+new Audio('sound/SS/O.mp3'),
+new Audio('sound/SS/O.mp3')]
 ];
 
 var keys400 = [
@@ -363,23 +389,23 @@ new Audio('sound/AfterParty/K.mp3')],
 new Audio('sound/AfterParty/A.mp3'), 
 new Audio('sound/AfterParty/A.mp3'), 
 new Audio('sound/AfterParty/A.mp3'), 
-new Audio('sound/AfterParty/H.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
-new Audio('sound/AfterParty/S.mp3'),
-new Audio('sound/AfterParty/S.mp3'),
-new Audio('sound/AfterParty/H.mp3'), 
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'), 
-new Audio('sound/AfterParty/H.mp3'), 
-new Audio('sound/AfterParty/H.mp3'), 
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
-new Audio('sound/AfterParty/H.mp3'),
-new Audio('sound/AfterParty/H.mp3'), 
-new Audio('sound/AfterParty/S.mp3'),
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'),
+new Audio('sound/AfterParty/A.mp3'), 
+new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3'),
 new Audio('sound/AfterParty/A.mp3')],
@@ -389,8 +415,8 @@ new Audio('sound/AfterParty/D.mp3'),
 new Audio('sound/AfterParty/D.mp3'), 
 new Audio('sound/AfterParty/D.mp3'), 
 new Audio('sound/AfterParty/D.mp3'),
-new Audio('sound/AfterParty/F.mp3'),
-new Audio('sound/AfterParty/F.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
+new Audio('sound/AfterParty/D.mp3'),
 new Audio('sound/AfterParty/D.mp3'),
 new Audio('sound/AfterParty/D.mp3'), 
 new Audio('sound/AfterParty/D.mp3'),
@@ -449,7 +475,7 @@ function getKey(key_last, key_now)
     }else if(window.innerWidth >= 400){
         audio = new Audio(keys400[GetKeyList(key_last, key_now)][keyID].src);
     }
-    console.log(keyID);
+    //console.log(keyID);
 
     //audio.pause();
     audio.currentTime = 0;
@@ -477,20 +503,20 @@ function GetKeyList(key_last, key_now)
     {
         if(dX < 0)
         {   
-            console.log('LEFT_KEY');
+            //console.log('LEFT_KEY');
             return LEFT_KEY;
         }else{
-            console.log('RIGHT_KEY');
+            //console.log('RIGHT_KEY');
             return RIGHT_KEY;
         }
     } else{
         if(dY > 0)
         {
-            console.log('DOWN_KEY');
+            //console.log('DOWN_KEY');
             return DOWN_KEY;
         }
         else{
-            console.log('UP_KEY');
+            //console.log('UP_KEY');
             return UP_KEY;
         }
     }
