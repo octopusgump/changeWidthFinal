@@ -10,6 +10,13 @@
 
   <div id="game">
   </div>
+
+    <div class="coverBackground">
+        <div class="coverCell">
+            <span>This is an interactive musical website. Try to mouse over the cubes, or resize your window.</span>
+        </div>
+    </div>
+
 </body>
   <script type="text/javascript">
 
@@ -523,8 +530,7 @@ function GetKeyList(key_last, key_now)
 
 var key_last;
 
-$(".pyramid").on("mouseover touchstart touchmove touchend", function()
-{   
+$(".pyramid").on("mouseover touchstart touchmove touchend", function(){   
     $(this).toggleClass('change');
     var key_now = parseInt($(this).attr('id').substr(1)); 
     getKey(key_last, key_now);
@@ -539,7 +545,17 @@ $(".pyramid").on("mouseover touchstart touchmove touchend", function()
     }
     //reset the starting or end time
     TimeOutID = setTimeout(TimeOutFunc, 1000);
-})
+});
+
+$("#p23").on("click", function(){   
+    $(".coverBackground").animate({top:"0%"}, 1200);
+});
+$(".coverCell").on("click", function(){   
+    $(".coverBackground").animate({top:"-=100%"}, 2000);
+    $("#p23").css("background-color", "#fc6b19");
+});
+
+
 
 </script>
 
